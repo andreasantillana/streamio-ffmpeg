@@ -25,9 +25,17 @@ module FFMPEG
   # @return [Logger]
   def self.logger
     return @logger if @logger
-    logger = Logger.new(STDOUT)
+    logger = Logger.new(logger_path)
     logger.level = Logger::INFO
     @logger = logger
+  end
+
+  def self.logger_path=(logger_path)
+    @logger_path = logger_path || 'STDOUT'
+  end
+
+  def self.logger_path
+    return @logger_path
   end
 
   # Set the path of the ffmpeg binary.
