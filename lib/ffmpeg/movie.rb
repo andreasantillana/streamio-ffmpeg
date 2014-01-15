@@ -13,7 +13,7 @@ module FFMPEG
       @path = path
 
       # ffmpeg will output to stderr
-      command = "#{FFMPEG.ffmpeg_binary} -i #{Shellwords.escape(path)}"
+      command = "#{FFMPEG.ffmpeg_binary} -probesize 2G -analyzeduration 2G -i #{Shellwords.escape(path)}"
       output = Open3.popen3(command) { |stdin, stdout, stderr| stderr.read }
 
       fix_encoding(output)
